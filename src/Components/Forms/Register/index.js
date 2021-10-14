@@ -11,7 +11,7 @@ import { TextValidator } from 'react-material-ui-form-validator';
 import { useSnackbar } from 'notistack'
 import _ from 'lodash'
 
-import { setActiveUser, setCurrentTab } from '@/Logic/redux'
+import { setUserList, setCurrentTab } from '@/Logic/redux'
 import { BaseForm } from './..'
 import useStyles from './styles'
 
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch: {
-    setActiveUser: (payload) => dispatch(setActiveUser(payload)),
+    // setActiveUser: (payload) => dispatch(setActiveUser(payload)),
     setCurrentTab: (payload) => dispatch(setCurrentTab(payload)),
   }
 })

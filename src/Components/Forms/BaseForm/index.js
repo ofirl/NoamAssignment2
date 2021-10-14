@@ -49,8 +49,10 @@ const BaseForm = (props) => {
 
     Object.entries(rules).forEach(item => {
       const [key, value] = item
-      if (!ValidatorForm.hasValidationRule(key))
-        ValidatorForm.addValidationRule(key, value)
+      if (ValidatorForm.hasValidationRule(key))
+        ValidatorForm.removeValidationRule(key)
+
+      ValidatorForm.addValidationRule(key, value)
     })
   }, [validationRules])
 

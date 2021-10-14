@@ -12,7 +12,7 @@ import 'fontsource-roboto';
 ReactDOM.render(
   <React.StrictMode>
     <Helmet>
-      <title>Magicdex</title>
+      <title>AppsForce - Home Assignment</title>
       <link href="//cdn.jsdelivr.net/npm/keyrune@latest/css/keyrune.css" rel="stylesheet" type="text/css" /> {/* keyrune */}
       <link href="//cdn.jsdelivr.net/npm/mana-font@latest/css/mana.css" rel="stylesheet" type="text/css" /> {/* mana */}
       {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> material-icons */}

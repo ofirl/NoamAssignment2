@@ -1,16 +1,22 @@
-import store from "./store";
+import store from "./store"
 import reducer, {
-  setActiveUser,
+  setUserList,
+  updateUser,
+  addUser,
+  deleteUser,
   setCurrentTab,
   toggleCurrentThemeType,
-  setCurrentCollection,
 } from './reducerSlice'
 
+
+export default reducer
+
 export {
-  reducer as default,
   store,
-  setActiveUser,
-  setCurrentCollection,
+  setUserList,
+  updateUser,
+  deleteUser,
+  addUser,
   setCurrentTab,
   toggleCurrentThemeType,
 }

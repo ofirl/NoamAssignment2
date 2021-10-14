@@ -11,7 +11,6 @@ import useStyles from "./styles"
 
 
 const mapStateToProps = (state) => ({
-  username: state.actions.activeUser.username,
   currentTab: state.actions.topMenu.currentTab,
 })
 
@@ -53,8 +52,11 @@ const Home = (props) => {
   return (
     <Grid container justifyContent='center' className={classes.root}>
       <Grid item component={Paper} xs={12} sm={10} md={9} lg={8} className={classes.content}>
-        <Typography variant="h2">
-          Home Page
+        <Typography variant="h2" style={{ paddingBottom: 16 }}>
+          Welcome AppsForce!
+        </Typography>
+        <Typography variant='body1'>
+          Made by Noam Levi
         </Typography>
       </Grid>
     </Grid>

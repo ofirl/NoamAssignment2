@@ -7,32 +7,31 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { connect } from "react-redux"
 import { makeStyles } from "@material-ui/styles"
 import { SnackbarProvider } from 'notistack'
+import axios from 'axios'
 // import { useHistory } from 'react-router';
 
-import { TopMenu, Login, Register, Home } from "@/Components"
-import { setActiveUser } from "@/Logic/redux"
+import { TopMenu, Login, Register, Home, UserList } from "@/Components"
+import { setUserList } from "@/Logic/redux"
+import { API_URL } from "@/Config"
 import useStyles from "./styles"
 
 
 const mapStateToProps = (state) => ({
   theme: state.actions.theme.currentTheme,
-  // accessToken: state.actions.activeUser.accessToken,
-  // username: state.actions.activeUser.username,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   dispatch: {
-    setActiveUser: (payload) => dispatch(setActiveUser(payload)),
+    setUserList: (payload) => dispatch(setUserList(payload)),
   }
 })
 
 
 const App = (props) => {
   /** VARS **/
-  // const history = useHistory()
   const snackbarRef = createRef()
   const {
-    // dispatch,
+    dispatch,
     theme: _theme,
   } = props
   const theme = Object.assign({}, _theme)
@@ -52,6 +51,14 @@ const App = (props) => {
       props: {
         path: '/home',
         component: () => <Redirect to='/' />,
+        exact: true,
+      }
+    },
+    {
+      component: Route,
+      props: {
+        path: '/users',
+        component: UserList,
         exact: true,
       }
     },
@@ -84,6 +91,26 @@ const App = (props) => {
   /** EFFECTS **/
   useEffect(() => {
     // onMount
+    axios
+      .get(API_URL)
+      .then(response => {
+        dispatch.setUserList({
+          users: response.data.results
+        })
+        snackbarRef.current?.enqueueSnackbar('Fetched initial user list', { variant: 'success' })
+      })
+      .catch(err => {
+        console.error('axios error', { ...err })
+        snackbarRef.current?.enqueueSnackbar(
+          (
+            <>
+              Failed to fetch initial user list,
+              <br />
+              Check console for errors
+            </>
+          ),
+          { variant: 'error' })
+      })
   }, [])
 
 

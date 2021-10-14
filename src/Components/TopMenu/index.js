@@ -22,14 +22,14 @@ import useStyles from "./styles";
 const mapStateToProps = (state) => ({
   theme: state.actions.theme.currentTheme,
   themeType: state.actions.theme.currentThemeType,
-  username: state.actions.activeUser.username,
+  // username: state.actions.activeUser.username,
   currentTab: state.actions.topMenu.currentTab,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   'dispatch': {
     toggleCurrentThemeType: (payload) => dispatch(toggleCurrentThemeType(payload)),
-    setActiveUser: (payload) => dispatch(setActiveUser(payload)),
+    // setActiveUser: (payload) => dispatch(setActiveUser(payload)),
   }
 })
 
@@ -78,7 +78,7 @@ const TopMenu = (props) => {
       
       case 'logout':
         // menuRef.current?.closeMenu()
-        dispatch.setActiveUser({username:null})
+        // dispatch.setActiveUser({username:null})
         enqueueSnackbar('Logged out', { variant: "info" })
         localStorage.removeItem('accessToken')
         break
@@ -97,32 +97,12 @@ const TopMenu = (props) => {
         <Grid container justifyContent='space-between'>
           <Grid item>
             <Tabs variant='scrollable' value={currentTab} onChange={handleTabChange}>
-              <Tab value='home'       label='Home' />
-              {/* <Tab value='collection' label='Collection' /> */}
-              {/* { username ? <Tab label='Collection' value='collection' /> : [] } */}
-              <Tab value='login'      className='hidden' />
-              <Tab value='register'   className='hidden' />
+              <Tab value='home'  label='Home' />
+              <Tab value='users' label='Users List' />
             </Tabs>
           </Grid>
           <Grid item>
             <MenuPopover ref={menuRef} icon={() => <MenuIcon />}>
-              <ListSubheader>
-                <AccountCircleIcon />
-                {username ?? 'Account'}
-              </ListSubheader>
-              {
-                username
-                  ? 
-                    <MenuItem onClick={handleMenuItemClick} id='logout'>Logout</MenuItem>
-                  : 
-                  <>
-                    <MenuItem onClick={handleMenuItemClick} id='login' goto='/login'>Login</MenuItem>
-                    <MenuItem onClick={handleMenuItemClick} id='register' goto='/register'>Register</MenuItem>
-                  </>
-              }
-              
-              <Divider />
-              
               <ListSubheader>
                 <SettingsIcon />
                 Settings

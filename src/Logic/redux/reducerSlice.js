@@ -1,21 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import initialState from "./initialState";
-import { accountReducers, themeReducers, topMenuReducers } from "./reducers"
+import { usersReducers, themeReducers, topMenuReducers } from "./reducers"
 
 
 export const reducerSlice = createSlice({
   name: "actions",
   initialState: initialState,
   reducers: {
-    ...accountReducers,
+    ...usersReducers,
     ...themeReducers,
     ...topMenuReducers
   },
 });
 
 export const {
-  setActiveUser,
+  setUserList,
+  updateUser,
+  addUser,
+  deleteUser,
   setCurrentTab,
   toggleCurrentThemeType,
   setCurrentCollection,

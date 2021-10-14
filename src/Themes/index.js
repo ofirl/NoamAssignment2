@@ -34,6 +34,12 @@ const sharedOverrides = {
       },
     },
   },
+  MuiTableCell: {
+    head: {
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+    },
+  },
   MuiTextField: {
     root: {
       width: "100%",
